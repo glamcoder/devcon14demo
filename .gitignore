@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/devcon14demo/obj/Debug
+/devcon14demoService/bin
+/devcon14demoService/obj/Debug
+*.suo
+/devcon14demoDroid/obj/Debug
+/devcon14demo/bin/Debug
+/packages
+/devcon14demoDroid/bin/Debug
