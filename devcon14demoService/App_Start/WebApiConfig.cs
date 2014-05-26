@@ -25,19 +25,30 @@ namespace devcon14demoService
         }
     }
 
-    public class devcon14demoInitializer : DropCreateDatabaseIfModelChanges<devcon14demoContext>
+    public class devcon14demoInitializer : DropCreateDatabaseAlways<devcon14demoContext>
     {
         protected override void Seed(devcon14demoContext context)
         {
-            List<TodoItem> todoItems = new List<TodoItem>
+            List<NewsItem> todoItems = new List<NewsItem>
             {
-                new TodoItem { Id = "1", Text = "First item", Complete = false },
-                new TodoItem { Id = "2", Text = "Second item", Complete = false },
+                new NewsItem { Id = "1", Title = "First news", Text = "Description of first news. Something happened somewhere.", Approved = false },
+                new NewsItem { Id = "2", Title = "Second news", Text = "Description of second news. Something didn't happen somewhere.", Approved = true },
             };
 
-            foreach (TodoItem todoItem in todoItems)
+            foreach (NewsItem todoItem in todoItems)
             {
-                context.Set<TodoItem>().Add(todoItem);
+                context.Set<NewsItem>().Add(todoItem);
+            }
+
+            List<NewsEntry> newitems = new List<NewsEntry>
+            {
+                new NewsEntry { Id = "1"},
+                new NewsEntry { Id = "2"},
+            };
+
+            foreach (NewsEntry todoItem in newitems)
+            {
+                context.Set<NewsEntry>().Add(todoItem);
             }
 
             base.Seed(context);

@@ -10,3 +10,10 @@
 /devcon14demo/bin/Debug
 /packages
 /devcon14demoDroid/bin/Debug
+/devcon14demo/bin/Release
+/devcon14demo/obj/Release
+/devcon14demoDroid/bin/Release
+/devcon14demoDroid/obj/Release
+*.user
+/devcon14demoService/obj/Release/Package/PackageTmp
+/devcon14demoService/obj/Release

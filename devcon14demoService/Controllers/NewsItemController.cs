@@ -9,42 +9,44 @@ using devcon14demoService.Models;
 
 namespace devcon14demoService.Controllers
 {
-    public class TodoItemController : TableController<TodoItem>
+    public class NewsItemController : TableController<NewsItem>
     {
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
             devcon14demoContext context = new devcon14demoContext();
-            DomainManager = new EntityDomainManager<TodoItem>(context, Request, Services);
+            DomainManager = new EntityDomainManager<NewsItem>(context, Request, Services);
         }
 
         // GET tables/TodoItem
-        public IQueryable<TodoItem> GetAllTodoItems()
+        [AllowAnonymous]
+        public IQueryable<NewsItem> GetAllNewsItems()
         {
             return Query();
         }
 
         // GET tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
-        public SingleResult<TodoItem> GetTodoItem(string id)
+        [AllowAnonymous]
+        public SingleResult<NewsItem> GetNewsItem(string id)
         {
             return Lookup(id);
         }
 
         // PATCH tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
-        public Task<TodoItem> PatchTodoItem(string id, Delta<TodoItem> patch)
+        public Task<NewsItem> PatchNewsItem(string id, Delta<NewsItem> patch)
         {
             return UpdateAsync(id, patch);
         }
 
         // POST tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
-        public async Task<IHttpActionResult> PostTodoItem(TodoItem item)
+        public async Task<IHttpActionResult> PostNewsItem(NewsItem item)
         {
-            TodoItem current = await InsertAsync(item);
+            NewsItem current = await InsertAsync(item);
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }
 
         // DELETE tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
-        public Task DeleteTodoItem(string id)
+        public Task DeleteNewsItem(string id)
         {
             return DeleteAsync(id);
         }

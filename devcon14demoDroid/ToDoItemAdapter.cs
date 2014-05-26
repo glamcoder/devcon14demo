@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace devcon14demo
 {
-	public class ToDoItemAdapter : BaseAdapter<ToDoItem>
+	public class ToDoItemAdapter : BaseAdapter<NewsItem>
 	{
 		Activity activity;
 		int layoutResourceId;
-		List<ToDoItem> items = new List<ToDoItem> ();
+		List<NewsItem> items = new List<NewsItem> ();
 
 		public ToDoItemAdapter (Activity activity, int layoutResourceId)
 		{
@@ -33,10 +33,10 @@ namespace devcon14demo
 
 				checkBox.CheckedChange += async (sender, e) => {
 					var cbSender = sender as CheckBox;
-					if (cbSender != null && cbSender.Tag is ToDoItemWrapper && cbSender.Checked) {
+					if (cbSender != null && cbSender.Tag is NewsWrapper && cbSender.Checked) {
 						cbSender.Enabled = false;
 						if (activity is ToDoActivity)
-							await ((ToDoActivity)activity).CheckItem ((cbSender.Tag as ToDoItemWrapper).ToDoItem);
+							await ((ToDoActivity)activity).CheckItem ((cbSender.Tag as NewsWrapper).News);
 					}
 				};
 			} else
@@ -45,12 +45,12 @@ namespace devcon14demo
 			checkBox.Text = currentItem.Text;
 			checkBox.Checked = false;
 			checkBox.Enabled = true;
-			checkBox.Tag = new ToDoItemWrapper (currentItem);
+			checkBox.Tag = new NewsWrapper (currentItem);
 
 			return row;
 		}
 
-		public void Add (ToDoItem item)
+		public void Add (NewsItem item)
 		{
 			items.Add (item);
 			NotifyDataSetChanged ();
@@ -62,7 +62,7 @@ namespace devcon14demo
 			NotifyDataSetChanged ();
 		}
 
-		public void Remove (ToDoItem item)
+		public void Remove (NewsItem item)
 		{
 			items.Remove (item);
 			NotifyDataSetChanged ();
@@ -81,7 +81,7 @@ namespace devcon14demo
 			}
 		}
 
-		public override ToDoItem this [int position] {
+		public override NewsItem this [int position] {
 			get {
 				return items [position];
 			}

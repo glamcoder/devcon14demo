@@ -19,7 +19,7 @@ namespace devcon14demo
 		private MobileServiceClient client;
 
 		//Mobile Service Table used to access data
-		private IMobileServiceTable<ToDoItem> toDoTable;
+		private IMobileServiceTable<NewsItem> toDoTable;
 
 		//Adapter to sync the items list with the view
 		private ToDoItemAdapter adapter;
@@ -62,7 +62,7 @@ namespace devcon14demo
 					applicationKey, progressHandler);
 
 				// Get the Mobile Service Table instance to use
-				toDoTable = client.GetTable <ToDoItem> ();
+				toDoTable = client.GetTable <NewsItem> ();
 
 				textNewToDo = FindViewById<EditText> (Resource.Id.textNewToDo);
 
@@ -109,11 +109,11 @@ namespace devcon14demo
 			try {
 				// Get the items that weren't marked as completed and add them in the
 				// adapter
-				var list = await toDoTable.Where (item => item.Complete == false).ToListAsync ();
+				var list = await toDoTable.Where (item => item.Approved == false).ToListAsync ();
 
 				adapter.Clear ();
 
-				foreach (ToDoItem current in list)
+				foreach (NewsItem current in list)
 					adapter.Add (current);
 
 			} catch (Exception e) {
@@ -121,17 +121,17 @@ namespace devcon14demo
 			}
 		}
 
-		public async Task CheckItem (ToDoItem item)
+		public async Task CheckItem (NewsItem item)
 		{
 			if (client == null) {
 				return;
 			}
 
 			// Set the item as completed and update it in the table
-			item.Complete = true;
+			item.Approved = true;
 			try {
 				await toDoTable.UpdateAsync (item);
-				if (item.Complete)
+				if (item.Approved)
 					adapter.Remove (item);
 
 			} catch (Exception e) {
@@ -147,16 +147,16 @@ namespace devcon14demo
 			}
 
 			// Create a new item
-			var item = new ToDoItem {
+			var item = new NewsItem {
 				Text = textNewToDo.Text,
-				Complete = false
+				Approved = false
 			};
 
 			try {
 				// Insert the new item
 				await toDoTable.InsertAsync (item);
 
-				if (!item.Complete) {
+				if (!item.Approved) {
 					adapter.Add (item);
 				}
 			} catch (Exception e) {
