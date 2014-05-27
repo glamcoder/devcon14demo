@@ -27,27 +27,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#71BCFA"
-        android:padding="6dip">
+        android:padding="6dip"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/textNewNewsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/add_textbox_hint_title">
+                <requestFocus />
+            </EditText>
+            <Button
+                android:id="@+id/buttonAddNews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="AddItem"
+                android:text="@string/add_button_text" />
+        </LinearLayout>
         <EditText
-            android:id="@+id/textNewToDo"
-            android:layout_width="0dip"
+            android:id="@+id/textNewNewsText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="@string/add_textbox_hint">
+            android:hint="@string/add_textbox_hint_text">
             <requestFocus />
         </EditText>
-        <Button
-            android:id="@+id/buttonAddToDo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="AddItem"
-            android:text="@string/add_button_text" />
     </LinearLayout>
     <ListView
-        android:id="@+id/listViewToDo"
+        android:id="@+id/listViewNews"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/row_list_to_do"
+        tools:listitem="@layout/row_list_news"
         android:padding="6dip" />
 </LinearLayout>

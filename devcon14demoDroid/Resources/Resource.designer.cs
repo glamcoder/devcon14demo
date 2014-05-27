@@ -64,22 +64,28 @@ namespace devcon14demo
 			public const int LinearLayout1 = 2131165184;
 			
 			// aapt resource value: 0x7f070004
-			public const int buttonAddToDo = 2131165188;
+			public const int buttonAddNews = 2131165188;
 			
 			// aapt resource value: 0x7f070006
-			public const int checkToDoItem = 2131165190;
-			
-			// aapt resource value: 0x7f070005
-			public const int listViewToDo = 2131165189;
+			public const int listViewNews = 2131165190;
 			
 			// aapt resource value: 0x7f070002
 			public const int loadingProgressBar = 2131165186;
 			
+			// aapt resource value: 0x7f070009
+			public const int menu_refresh = 2131165193;
+			
+			// aapt resource value: 0x7f070008
+			public const int newsItemText = 2131165192;
+			
 			// aapt resource value: 0x7f070007
-			public const int menu_refresh = 2131165191;
+			public const int newsItemTitle = 2131165191;
+			
+			// aapt resource value: 0x7f070005
+			public const int textNewNewsText = 2131165189;
 			
 			// aapt resource value: 0x7f070003
-			public const int textNewToDo = 2131165187;
+			public const int textNewNewsTitle = 2131165187;
 			
 			// aapt resource value: 0x7f070001
 			public const int textViewTitle = 2131165185;
@@ -98,10 +104,10 @@ namespace devcon14demo
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Activity_To_Do = 2130903040;
+			public const int Activity_News = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Row_List_To_Do = 2130903041;
+			public const int Row_List_News = 2130903041;
 			
 			static Layout()
 			{
@@ -132,23 +138,29 @@ namespace devcon14demo
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f040003
+			public const int add_button_text = 2130968579;
+			
 			// aapt resource value: 0x7f040002
-			public const int add_button_text = 2130968578;
+			public const int add_textbox_hint_text = 2130968578;
 			
 			// aapt resource value: 0x7f040001
-			public const int add_textbox_hint = 2130968577;
+			public const int add_textbox_hint_title = 2130968577;
 			
 			// aapt resource value: 0x7f040000
 			public const int app_name = 2130968576;
 			
+			// aapt resource value: 0x7f040007
+			public const int checkbox_text_text = 2130968583;
+			
+			// aapt resource value: 0x7f040006
+			public const int checkbox_text_title = 2130968582;
+			
 			// aapt resource value: 0x7f040005
-			public const int checkbox_text = 2130968581;
+			public const int menu_refresh = 2130968581;
 			
 			// aapt resource value: 0x7f040004
-			public const int menu_refresh = 2130968580;
-			
-			// aapt resource value: 0x7f040003
-			public const int mobile_services = 2130968579;
+			public const int mobile_services = 2130968580;
 			
 			static String()
 			{

@@ -29,27 +29,14 @@ namespace devcon14demoService
     {
         protected override void Seed(devcon14demoContext context)
         {
-            List<NewsItem> todoItems = new List<NewsItem>
+            var newsItems = new List<NewsItem>
             {
                 new NewsItem { Id = "1", Title = "First news", Text = "Description of first news. Something happened somewhere.", Approved = false },
-                new NewsItem { Id = "2", Title = "Second news", Text = "Description of second news. Something didn't happen somewhere.", Approved = true },
+                new NewsItem { Id = "2", Title = "Second news", Text = "Description of second news. Something didn't happen anywhere.", Approved = true },
             };
 
-            foreach (NewsItem todoItem in todoItems)
-            {
-                context.Set<NewsItem>().Add(todoItem);
-            }
-
-            List<NewsEntry> newitems = new List<NewsEntry>
-            {
-                new NewsEntry { Id = "1"},
-                new NewsEntry { Id = "2"},
-            };
-
-            foreach (NewsEntry todoItem in newitems)
-            {
-                context.Set<NewsEntry>().Add(todoItem);
-            }
+            foreach (NewsItem news in newsItems)
+                context.Set<NewsItem>().Add(news);
 
             base.Seed(context);
         }

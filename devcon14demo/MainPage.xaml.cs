@@ -35,31 +35,29 @@ namespace devcon14demo
     public sealed partial class MainPage : Page
     {
         private MobileServiceCollection<NewsItem, NewsItem> items;
-        private IMobileServiceTable<NewsItem> todoTable = App.MobileService.GetTable<NewsItem>();
+        private IMobileServiceTable<NewsItem> newsTable = App.MobileService.GetTable<NewsItem>();
 
         public MainPage()
         {
             this.InitializeComponent();
         }
 
-        private async void InsertTodoItem(NewsItem newsItem)
+        private async void InsertNewsItem(NewsItem newsItem)
         {
-            // This code inserts a new TodoItem into the database. When the operation completes
+            // This code inserts a new NewsItem into the database. When the operation completes
             // and Mobile Services has assigned an Id, the item is added to the CollectionView
-            await todoTable.InsertAsync(newsItem);
+            await newsTable.InsertAsync(newsItem);
             items.Add(newsItem);
         }
 
-        private async void RefreshTodoItems()
+        private async void RefreshNewsItems()
         {
             MobileServiceInvalidOperationException exception = null;
             try
             {
-                // This code refreshes the entries in the list view by querying the TodoItems table.
-                // The query excludes completed TodoItems
-                items = await todoTable
-                    .Where(item => item.Approved == false)
-                    .ToCollectionAsync();
+                // This code refreshes the entries in the list view by querying the NewsItems table.
+                // The query excludes completed NewsItems
+                items = await newsTable.ToCollectionAsync();
                 this.ButtonSave.IsEnabled = true;
             }
             catch (MobileServiceInvalidOperationException e)
@@ -77,38 +75,38 @@ namespace devcon14demo
             }
         }
 
-        private async void UpdateCheckedTodoItem(NewsItem item)
+        private async void UpdateCheckedNewsItem(NewsItem item)
         {
-            // This code takes a freshly completed TodoItem and updates the database. When the MobileService 
+            // This code takes a freshly completed NewsItem and updates the database. When the MobileService 
             // responds, the item is removed from the list 
-            await todoTable.UpdateAsync(item);
-            items.Remove(item);
+            await newsTable.UpdateAsync(item);
+            //items.Remove(item);
         }
 
         private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
         {
-            RefreshTodoItems();
+            RefreshNewsItems();
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            var todoItem = new NewsItem { Title = TextInputTitle.Text, Text = TextInputText.Text };
-            InsertTodoItem(todoItem);
+            var newsItem = new NewsItem { Title = TextInputTitle.Text, Text = TextInputText.Text };
+            InsertNewsItem(newsItem);
         }
 
         private void CheckBoxComplete_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox cb = (CheckBox)sender;
             NewsItem item = cb.DataContext as NewsItem;
-            UpdateCheckedTodoItem(item);
+            UpdateCheckedNewsItem(item);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            RefreshTodoItems();
+            RefreshNewsItems();
         }
 
-        private void ApproveButton_Click(object sender, RoutedEventArgs e)
+        private void ButtonApproveAll_Click(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
         }

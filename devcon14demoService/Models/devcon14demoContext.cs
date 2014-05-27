@@ -39,8 +39,6 @@ namespace devcon14demoService.Models
                 new AttributeToColumnAnnotationConvention<TableColumnAttribute, string>(
                     "ServiceTableColumn", (property, attributes) => attributes.Single().ColumnType.ToString()));
         }
-
-        public System.Data.Entity.DbSet<devcon14demoService.DataObjects.NewsEntry> NewsEntries { get; set; }
     }
 
 }

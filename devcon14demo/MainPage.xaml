@@ -63,16 +63,18 @@
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <local:QuickStartTask Number="2" Title="Query and Update Data" Description="Click refresh below to load News from your database. Use the checkbox to approve and update your News" />
-                    <Button Margin="72,0,0,0" Name="ButtonRefresh" Click="ButtonRefresh_Click">Refresh</Button>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Margin="72,0,0,0" Name="ButtonRefresh" Click="ButtonRefresh_Click">Refresh</Button>
+                        <Button Margin="0,0,0,0" Name="ButtonApproveAll" Click="ButtonApproveAll_Click">Approve All</Button>
+                    </StackPanel>
                 </StackPanel>
 
                 <ListView Name="ListItems" Margin="62,10,0,0" Grid.Row="1">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
-                                <CheckBox Name="CheckBoxComplete" IsChecked="{Binding Approved, Mode=TwoWay}" Checked="CheckBoxComplete_Checked" Content="{Binding Title}" Margin="10,5" VerticalAlignment="Center" IsEnabled="False"/>
-                                <TextBlock Text="{Binding Text}" Margin="10,5" VerticalAlignment="Center" TextWrapping="WrapWholeWords"></TextBlock>
-                                <Button Name="ApproveButton" Click="ApproveButton_Click" Margin="10,5" VerticalAlignment="Center">Approve</Button>
+                                <CheckBox Name="CheckBoxComplete" IsChecked="{Binding Approved, Mode=TwoWay}" Checked="CheckBoxComplete_Checked" Content="{Binding Title}" Margin="10,5" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Text}" Margin="40,5,5,5" VerticalAlignment="Center" TextWrapping="WrapWholeWords"></TextBlock>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

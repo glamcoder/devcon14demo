@@ -18,34 +18,33 @@ namespace devcon14demoService.Controllers
             DomainManager = new EntityDomainManager<NewsItem>(context, Request, Services);
         }
 
-        // GET tables/TodoItem
+        // GET tables/NewsItem
         [AllowAnonymous]
         public IQueryable<NewsItem> GetAllNewsItems()
         {
             return Query();
         }
 
-        // GET tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
-        [AllowAnonymous]
+        // GET tables/NewsItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public SingleResult<NewsItem> GetNewsItem(string id)
         {
             return Lookup(id);
         }
 
-        // PATCH tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
+        // PATCH tables/NewsItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public Task<NewsItem> PatchNewsItem(string id, Delta<NewsItem> patch)
         {
             return UpdateAsync(id, patch);
         }
 
-        // POST tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
+        // POST tables/NewsItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public async Task<IHttpActionResult> PostNewsItem(NewsItem item)
         {
             NewsItem current = await InsertAsync(item);
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }
 
-        // DELETE tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
+        // DELETE tables/NewsItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public Task DeleteNewsItem(string id)
         {
             return DeleteAsync(id);

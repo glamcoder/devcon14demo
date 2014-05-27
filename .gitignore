@@ -17,3 +17,5 @@
 *.user
 /devcon14demoService/obj/Release/Package/PackageTmp
 /devcon14demoService/obj/Release
+*.mdf
+*.ldf

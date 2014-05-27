@@ -13,19 +13,20 @@ namespace devcon14demo
 	[Activity (MainLauncher = true, 
 	           Icon="@drawable/ic_launcher", Label="@string/app_name",
 	           Theme="@style/AppTheme")]
-	public class ToDoActivity : Activity
+	public class NewsActivity : Activity
 	{
 		//Mobile Service Client reference
 		private MobileServiceClient client;
 
 		//Mobile Service Table used to access data
-		private IMobileServiceTable<NewsItem> toDoTable;
+		private IMobileServiceTable<NewsItem> newsTable;
 
 		//Adapter to sync the items list with the view
-		private ToDoItemAdapter adapter;
+		private NewsItemAdapter adapter;
 
-		//EditText containing the "New ToDo" text
-		private EditText textNewToDo;
+		//EditText containing the "New News" text
+        private EditText textNewNewsTitle;
+        private EditText textNewNewsText;
 
 		//Progress spinner to use for table operations
 		private ProgressBar progressBar;
@@ -38,7 +39,7 @@ namespace devcon14demo
 			base.OnCreate (bundle);
 
 			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Activity_To_Do);
+			SetContentView (Resource.Layout.Activity_News);
 
 			progressBar = FindViewById<ProgressBar> (Resource.Id.loadingProgressBar);
 
@@ -62,14 +63,15 @@ namespace devcon14demo
 					applicationKey, progressHandler);
 
 				// Get the Mobile Service Table instance to use
-				toDoTable = client.GetTable <NewsItem> ();
+				newsTable = client.GetTable <NewsItem> ();
 
-				textNewToDo = FindViewById<EditText> (Resource.Id.textNewToDo);
+				textNewNewsTitle = FindViewById<EditText> (Resource.Id.textNewNewsTitle);
+                textNewNewsText = FindViewById<EditText>(Resource.Id.textNewNewsText);
 
 				// Create an adapter to bind the items with the view
-				adapter = new ToDoItemAdapter (this, Resource.Layout.Row_List_To_Do);
-				var listViewToDo = FindViewById<ListView> (Resource.Id.listViewToDo);
-				listViewToDo.Adapter = adapter;
+				adapter = new NewsItemAdapter (this, Resource.Layout.Row_List_News);
+				var listViewNews = FindViewById<ListView> (Resource.Id.listViewNews);
+                listViewNews.Adapter = adapter;
 
 				// Load the items from the Mobile Service
 				await RefreshItemsFromTableAsync ();
@@ -107,9 +109,7 @@ namespace devcon14demo
 		async Task RefreshItemsFromTableAsync ()
 		{
 			try {
-				// Get the items that weren't marked as completed and add them in the
-				// adapter
-				var list = await toDoTable.Where (item => item.Approved == false).ToListAsync ();
+				var list = await newsTable.Where (item => item.Approved == true).ToListAsync ();
 
 				adapter.Clear ();
 
@@ -130,7 +130,7 @@ namespace devcon14demo
 			// Set the item as completed and update it in the table
 			item.Approved = true;
 			try {
-				await toDoTable.UpdateAsync (item);
+				await newsTable.UpdateAsync (item);
 				if (item.Approved)
 					adapter.Remove (item);
 
@@ -142,19 +142,20 @@ namespace devcon14demo
 		[Java.Interop.Export()]
 		public async void AddItem (View view)
 		{
-			if (client == null || string.IsNullOrWhiteSpace (textNewToDo.Text)) {
+			if (client == null || string.IsNullOrWhiteSpace (textNewNewsTitle.Text)) {
 				return;
 			}
 
 			// Create a new item
 			var item = new NewsItem {
-				Text = textNewToDo.Text,
+				Title = textNewNewsTitle.Text,
+                Text = textNewNewsText.Text,
 				Approved = false
 			};
 
 			try {
 				// Insert the new item
-				await toDoTable.InsertAsync (item);
+				await newsTable.InsertAsync (item);
 
 				if (!item.Approved) {
 					adapter.Add (item);
@@ -163,7 +164,7 @@ namespace devcon14demo
 				CreateAndShowDialog (e, "Error");
 			}
 
-			textNewToDo.Text = "";
+			textNewNewsTitle.Text = "";
 		}
 
 		void CreateAndShowDialog (Exception exception, String title)
