@@ -152,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ApproveAllController.cs" />
     <Compile Include="Controllers\NewsItemController.cs" />
     <Compile Include="DataObjects\NewsItem.cs" />
     <Compile Include="Models\devcon14demoContext.cs" />

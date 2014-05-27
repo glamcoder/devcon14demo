@@ -33,17 +33,6 @@ namespace devcon14demo
 
 		        checkBoxTitle = row.FindViewById<CheckBox>(Resource.Id.newsItemTitle);
 		        textViewNewsText = row.FindViewById<TextView>(Resource.Id.newsItemText);
-
-		        /*checkBoxTitle.CheckedChange += async (sender, e) =>
-		        {
-		            var cbSender = sender as CheckBox;
-		            if (cbSender != null && cbSender.Tag is NewsWrapper && cbSender.Checked)
-		            {
-		                cbSender.Enabled = false;
-		                if (activity is NewsActivity)
-		                    await ((NewsActivity) activity).CheckItem((cbSender.Tag as NewsWrapper).News);
-		            }
-		        };*/
 		    }
 		    else
 		    {

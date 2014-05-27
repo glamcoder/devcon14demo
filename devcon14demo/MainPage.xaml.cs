@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAzure.MobileServices;
+﻿using System.Net.Http;
+using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -80,7 +81,6 @@ namespace devcon14demo
             // This code takes a freshly completed NewsItem and updates the database. When the MobileService 
             // responds, the item is removed from the list 
             await newsTable.UpdateAsync(item);
-            //items.Remove(item);
         }
 
         private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
@@ -106,9 +106,25 @@ namespace devcon14demo
             RefreshNewsItems();
         }
 
-        private void ButtonApproveAll_Click(object sender, RoutedEventArgs e)
+        private async void ButtonApproveAll_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var message = "";
+
+            try
+            {
+                var result =
+                    await App.MobileService.InvokeApiAsync<int>("approveAll", HttpMethod.Post, null);
+                RefreshNewsItems();
+                return;
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+            }
+
+            var dialog = new MessageDialog(message);
+            dialog.Commands.Add(new UICommand("OK"));
+            await dialog.ShowAsync();
         }
     }
 }
