@@ -19,3 +19,4 @@
 /devcon14demoService/obj/Release
 *.mdf
 *.ldf
+*.pubxml
