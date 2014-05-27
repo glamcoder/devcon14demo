@@ -73,7 +73,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
-                                <CheckBox Name="CheckBoxComplete" IsChecked="{Binding Approved, Mode=TwoWay}" Checked="CheckBoxComplete_Checked" Content="{Binding Title}" Margin="10,5" VerticalAlignment="Center"/>
+                                <CheckBox Name="CheckBoxComplete" IsChecked="{Binding Approved, Mode=TwoWay}" Checked="CheckBoxComplete_Checked" Unchecked="CheckBoxComplete_Checked" Content="{Binding Title}" Margin="10,5" VerticalAlignment="Center" FontWeight="Bold" />
                                 <TextBlock Text="{Binding Text}" Margin="40,5,5,5" VerticalAlignment="Center" TextWrapping="WrapWholeWords"></TextBlock>
                             </StackPanel>
                         </DataTemplate>

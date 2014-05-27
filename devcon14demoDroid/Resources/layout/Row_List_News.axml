@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:maxLines="2"
-        android:text="@string/checkbox_text_title" />
+        android:text="@string/checkbox_text_title"
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/newsItemText"
         android:text="@string/checkbox_text_text"

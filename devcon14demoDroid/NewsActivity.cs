@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Android.OS;
 using Android.App;
 using Android.Views;
@@ -32,7 +33,7 @@ namespace devcon14demo
 		private ProgressBar progressBar;
 
 		const string applicationURL = @"https://devcon14demo.azure-mobile.net/";
-		const string applicationKey = @"AyPuLEqReqIBMyUDGtoxNJdTFrciiU16";
+        const string applicationKey = @"YLMivKLPjEuYTNcMtVYnQLuwkeNtin87";
 
 		protected override async void OnCreate (Bundle bundle)
 		{
@@ -109,7 +110,8 @@ namespace devcon14demo
 		async Task RefreshItemsFromTableAsync ()
 		{
 			try {
-				var list = await newsTable.Where (item => item.Approved == true).ToListAsync ();
+				//var list = await newsTable.Where (item => item.Approved == true).ToListAsync ();
+                var list = await client.InvokeApiAsync<List<NewsItem>>("getNews", HttpMethod.Get, null);
 
 				adapter.Clear ();
 
@@ -157,7 +159,7 @@ namespace devcon14demo
 				// Insert the new item
 				await newsTable.InsertAsync (item);
 
-				if (!item.Approved) {
+				if (item.Approved) {
 					adapter.Add (item);
 				}
 			} catch (Exception e) {
@@ -165,6 +167,7 @@ namespace devcon14demo
 			}
 
 			textNewNewsTitle.Text = "";
+		    textNewNewsText.Text = "";
 		}
 
 		void CreateAndShowDialog (Exception exception, String title)

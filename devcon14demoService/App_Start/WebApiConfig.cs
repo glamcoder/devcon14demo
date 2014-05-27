@@ -25,14 +25,20 @@ namespace devcon14demoService
         }
     }
 
-    public class devcon14demoInitializer : DropCreateDatabaseAlways<devcon14demoContext>
+    public class devcon14demoInitializer : DropCreateDatabaseIfModelChanges<devcon14demoContext>
     {
         protected override void Seed(devcon14demoContext context)
         {
             var newsItems = new List<NewsItem>
             {
-                new NewsItem { Id = "1", Title = "First news", Text = "Description of first news. Something happened somewhere.", Approved = false },
-                new NewsItem { Id = "2", Title = "Second news", Text = "Description of second news. Something didn't happen anywhere.", Approved = true },
+                new NewsItem { Id = "1", Text = "Шокирующие подробности этой новости", Title = "Акулы в Египте, худшие прогнозы",       Approved = false },
+                new NewsItem { Id = "2", Text = "Шокирующие подробности этой новости", Title = "Труп осьминога Пауля владеет гипнозом", Approved = false },
+                new NewsItem { Id = "3", Text = "Шокирующие подробности этой новости", Title = "Киркоров шокировал Юрмалу юбкой",       Approved = false },
+                new NewsItem { Id = "4", Text = "Шокирующие подробности этой новости", Title = "8 таджиков нашли под шлюпкой",          Approved = false },
+                new NewsItem { Id = "5", Text = "Шокирующие подробности этой новости", Title = "Голые немки пропали в лесу",            Approved = false },
+                new NewsItem { Id = "6", Text = "Шокирующие подробности этой новости", Title = "Канонизировали Алсу",                   Approved = false },
+                new NewsItem { Id = "7", Text = "Шокирующие подробности этой новости", Title = "Медвед это клон, а клон — медвед",      Approved = false },
+                new NewsItem { Id = "8", Text = "Шокирующие подробности этой новости", Title = "На первом месте в чарте конь-людоед",   Approved = false },
             };
 
             foreach (NewsItem news in newsItems)

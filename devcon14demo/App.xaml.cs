@@ -26,16 +26,16 @@ namespace devcon14demo
         // This MobileServiceClient has been configured to communicate with your local
         // test project for debugging purposes. Comment out this declaration and use the one
         // provided below when you are done developing and deploy your service to the cloud.
-        public static MobileServiceClient MobileService = new MobileServiceClient(
-            "http://localhost:58196"
-        );
+        //public static MobileServiceClient MobileService = new MobileServiceClient(
+        //    "http://localhost:58196"
+        //);
 
         // This MobileServiceClient has been configured to communicate with your Mobile Service's url
         // and application key. You're all set to start working with your Mobile Service!
-        //public static MobileServiceClient MobileService = new MobileServiceClient(
-        //    "https://devcon14demo.azure-mobile.net/",
-        //    "ysvOzwHeYWpLQhdhcjjKaKpBwJJPkw37"
-        //);
+        public static MobileServiceClient MobileService = new MobileServiceClient(
+            "https://devcon14demo.azure-mobile.net/",
+            "YLMivKLPjEuYTNcMtVYnQLuwkeNtin87"
+        );
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
