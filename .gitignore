@@ -20,3 +20,4 @@
 *.mdf
 *.ldf
 *.pubxml
+/Offline/packages
