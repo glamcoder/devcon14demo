@@ -34,7 +34,7 @@ namespace devcon14demo
         // and application key. You're all set to start working with your Mobile Service!
         public static MobileServiceClient MobileService = new MobileServiceClient(
             "https://devcon14demo.azure-mobile.net/",
-            "YLMivKLPjEuYTNcMtVYnQLuwkeNtin87"
+            "YOUR_KEY_GOES_HERE"
         );
 
         /// <summary>
