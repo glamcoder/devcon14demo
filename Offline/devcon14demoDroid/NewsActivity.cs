@@ -35,7 +35,7 @@ namespace devcon14demoDroidOffline
         private ProgressBar progressBar;
 
         private const string applicationURL = @"https://devcon14demo.azure-mobile.net/";
-        private const string applicationKey = @"YLMivKLPjEuYTNcMtVYnQLuwkeNtin87";
+        private const string applicationKey = @"YOUR_KEY_GOES_HERE";
 
         protected override async void OnCreate(Bundle bundle)
         {
